@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="bg-white p-6 rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold text-orange-500 mb-4">Messages</h2>
+    {% for message in messages %}
+        <div class="mb-4 p-4 border border-gray-200 rounded {% if not message.is_read %}bg-orange-50{% endif %}">
+            <p class="text-gray-700"><strong>De:</strong> {{ message.sender.username }}</p>
+            <p class="text-gray-700">{{ message.content|truncatewords:30 }}</p>
+            <p class="text-gray-500 text-sm">{{ message.sent_at }}</p>
+        </div>
+    {% empty %}
+        <p class="text-gray-700">Aucun message.</p>
+    {% endfor %}
+</div>
+{% endblock %}
