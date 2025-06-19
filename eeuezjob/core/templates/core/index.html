@@ -1,8 +1,95 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<div class="bg-white p-6 rounded-lg shadow-md">
-    <h2 class="text-2xl font-bold text-orange-500 mb-4">Bienvenue sur EEUEZJob</h2>
-    <p class="text-gray-700 mb-4">Connectez-vous pour découvrir des opportunités d’emploi ou gérer vos recrutements.</p>
-    <a href="{% url 'job_offer_list' %}" class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">Voir les offres</a>
-</div>
+<!-- Hero Section -->
+<section class="relative h-96 flex items-center">
+    <video class="absolute inset-0 w-full h-full object-cover" autoplay loop muted playsinline>
+        <source src="{% static 'images/hero-bg.mp4' %}" type="video/mp4">
+        Votre navigateur ne prend pas en charge la vidéo.
+    </video>
+    <div class="absolute inset-0 bg-black opacity-40"></div> <!-- Overlay for text readability -->
+    <div class="container mx-auto flex items-center space-x-8 px-4 relative z-10">
+        <img src="{% static 'images/logo.png' %}" alt="EEUEZJob Logo" class="w-24 h-24">
+        <div>
+            <h1 class="text-4xl md:text-5xl font-bold text-orange-500 font-poppins">Bienvenue sur EEUEZJob</h1>
+            <p class="text-lg text-white mt-2">Connectez-vous pour découvrir des opportunités d’emploi ou gérer vos recrutements.</p>
+            <a href="{% url 'job_offer_list' %}" class="mt-4 inline-block bg-orange-500 text-white px-6 py-3 rounded hover:bg-orange-600">Voir les offres</a>
+        </div>
+    </div>
+</section>
+
+<!-- Description Section -->
+<section class="py-8 px-4 mx-auto max-w-screen-xl">
+    <div class="font-light text-gray-700 sm:text-lg">
+        <h2 class="mb-4 text-3xl sm:text-6xl leading-tight font-extrabold text-orange-500 font-poppins">
+            <b>Trouvez votre prochain emploi avec EEUEZJob</b>
+        </h2>
+        <p class="mb-4">
+            Profitez d’une plateforme dédiée à la recherche d’emploi.
+        </p>
+        <li class="mb-6 block items-center">
+            <span class="flex items-center">
+                <svg class="w-6 h-6 mr-2" fill="rgb(245, 158, 11)" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1412 734q0-28-18-46l-91-90q-19-19-45-19t-45 19l-408 407-226-226q-19-19-45-19t-45 19l-91 90q-18 18-18 46 0 27 18 45l362 362q19 19 45 19 27 0 46-19l543-543q18-18 18-45zm252 162q0 209-103 385.5t-279.5 279.5-385.5 103-385.5-103-279.5-279.5-103-385.5 103-385.5 279.5-279.5 385.5-103 385.5 103 279.5 279.5 103 385.5z"></path>
+                </svg>
+                <b class="font-bold">Accéder à EEUEZJob</b>
+            </span>
+            <p class="text-lg">
+                Prenez connaissance du contenu de la plateforme.
+            </p>
+        </li>
+        <li class="mb-6 block items-center">
+            <span class="flex items-center">
+                <svg class="w-6 h-6 mr-2" fill="rgb(245, 158, 11)" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1412 734q0-28-18-46l-91-90q-19-19-45-19t-45 19l-408 407-226-226q-19-19-45-19t-45 19l-91 90q-18 18-18 46 0 27 18 45l362 362q19 19 45 19 27 0 46-19l543-543q18-18 18-45zm252 162q0 209-103 385.5t-279.5 279.5-385.5 103-385.5-103-279.5-279.5-103-385.5 103-385.5 279.5-279.5 385.5-103 385.5 103 279.5 279.5 103 385.5z"></path>
+                </svg>
+                <b class="font-bold">Créer un compte employé</b>
+            </span>
+            <p class="text-lg">
+                Rendez-vous dans la page d’inscription dédiée aux chercheurs d’emploi et remplissez le formulaire.
+            </p>
+        </li>
+        <li class="mb-6 block items-center">
+            <span class="flex items-center">
+                <svg class="w-6 h-6 mr-2" fill="rgb(245, 158, 11)" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1412 734q0-28-18-46l-91-90q-19-19-45-19t-45 19l-408 407-226-226q-19-19-45-19t-45 19l-91 90q-18 18-18 46 0 27 18 45l362 362q19 19 45 19 27 0 46-19l543-543q18-18 18-45zm252 162q0 209-103 385.5t-279.5 279.5-385.5 103-385.5-103-279.5-279.5-103-385.5 103-385.5 279.5-279.5 385.5-103 385.5 103 279.5 279.5 103 385.5z"></path>
+                </svg>
+                <b class="font-bold">Eh voilà</b>
+            </span>
+            <p class="text-lg">
+                Une fois votre profil créé, vous pouvez le partager sur les réseaux sociaux, souscrire à nos programmes de sponsoring pour augmenter la portée de votre profil.
+            </p>
+        </li>
+        <br>
+        <a href="{% url 'account_signup' %}" class="inline-block bg-orange-500 text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-orange-600">Créer mon compte</a>
+    </div>
+</section>
+
+<!-- Categories Section -->
+<section class="py-12 bg-orange-50">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-orange-500 font-poppins mb-6 text-center">Catégories populaires</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                <h3 class="text-xl font-semibold text-orange-500">Informatique de gestion</h3>
+                <p class="text-gray-700 mt-2">Développement logiciel, gestion de bases de données, et plus.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                <h3 class="text-xl font-semibold text-orange-500">Marketing digital</h3>
+                <p class="text-gray-700 mt-2">SEO, publicité en ligne, gestion des réseaux sociaux.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                <h3 class="text-xl font-semibold text-orange-500">Architecture et travaux publics</h3>
+                <p class="text-gray-700 mt-2">Conception, construction, gestion de projets.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                <h3 class="text-xl font-semibold text-orange-500">Médecine</h3>
+                <p class="text-gray-700 mt-2">Soins de santé, recherche médicale, pharmacie.</p>
+            </div>
+        </div>
+        <div class="text-center mt-8">
+            <a href="{% url 'job_offer_list' %}" class="text-orange-500 hover:underline">Voir toutes les offres d’emploi</a>
+        </div>
+    </div>
+</section>
 {% endblock %}

@@ -1,0 +1,86 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EEUEZJob</title>
+    {% tailwind_css %}
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-white font-sans">
+    <header class="bg-transparent backdrop-blur-md sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center p-4">
+            <h1 class="text-2xl font-bold text-orange-500">EEUEZJob</h1>
+            <nav class="flex items-center space-x-4">
+                <a href="{% url 'home' %}" class="text-white hover:text-orange-100">Accueil</a>
+                <a href="{% url 'job_offer_list' %}" class="text-white hover:text-orange-100">Offres</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'candidate_profile_create' %}" class="text-white hover:text-orange-100">Profil</a>
+                    <a href="{% url 'message_list' %}" class="text-white hover:text-orange-100">Messages</a>
+                    <a href="{% url 'account_logout' %}" class="text-white hover:text-orange-100">Déconnexion</a>
+                {% else %}
+                    <a href="{% url 'account_signup' %}" class="border border-white text-white px-4 py-2 rounded hover:bg-white hover:text-orange-500">S’inscrire</a>
+                    <a href="{% url 'account_login' %}" class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">Se connecter</a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
+    <main class="relative">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4 mb-4">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% block content %}
+        {% endblock %}
+    </main>
+    <!-- AI Assistant -->
+    <div id="assistant" class="fixed right-4 top-1/2 transform -translate-y-1/2 z-50">
+        <img src="{% static 'images/assistant-avatar.png' %}" alt="Assistant Avatar" class="w-12 h-12 cursor-pointer rounded-full shadow-md">
+        <div id="assistant-message" class="hidden bg-white p-4 rounded-lg shadow-md mt-2 max-w-xs text-gray-700">
+            <p id="assistant-text" class="text-sm"></p>
+            <button id="close-assistant" class="mt-2 text-orange-500 hover:underline">Fermer</button>
+        </div>
+    </div>
+    <script>
+        const messages = [
+            "Avez-vous besoin d’aide ?",
+            "Que puis-je faire pour vous ?",
+            "Si vous voulez quelque chose, n’hésitez pas !"
+        ];
+        let currentMessage = 0;
+        const assistantText = document.getElementById('assistant-text');
+        const assistantMessage = document.getElementById('assistant-message');
+        const assistantIcon = document.querySelector('#assistant img');
+        const closeButton = document.getElementById('close-assistant');
+
+        function showMessage() {
+            assistantText.textContent = messages[currentMessage];
+            assistantMessage.classList.remove('hidden');
+            currentMessage = (currentMessage + 1) % messages.length;
+        }
+
+        setInterval(showMessage, 60000);
+
+        assistantIcon.addEventListener('click', () => {
+            if (assistantMessage.classList.contains('hidden')) {
+                showMessage();
+            } else {
+                assistantMessage.classList.add('hidden');
+            }
+        });
+
+        closeButton.addEventListener('click', () => {
+            assistantMessage.classList.add('hidden');
+        });
+
+        assistantText.textContent = "Cliquez pour obtenir de l’aide sur EEUEZJob !";
+    </script>
+    <footer class="bg-orange-500 text-white p-4 text-center">
+        <p>© 2025 EEUEZJob. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>

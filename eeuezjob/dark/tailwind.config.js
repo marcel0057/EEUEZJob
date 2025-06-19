@@ -8,12 +8,15 @@ module.exports = {
     extend: {
       colors: {
         orange: {
-          500: '#F97316',
-          600: '#EA580C',
+          500: '#F59E0B',
+          600: '#D97706',
           50: '#FFF7ED',
-          100: '#FFEDD5',
+          100: '#FEE6B8',
         },
         white: '#FFFFFF',
+      },
+      fontFamily: {
+        poppins: ['Poppins', 'sans-serif'],
       },
     },
   },
