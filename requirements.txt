@@ -7,3 +7,4 @@ python-decouple
 gunicorn
 django-allauth
 djangorestframework
+whitenoise
