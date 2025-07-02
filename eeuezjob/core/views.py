@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import JobOffer, Message, CandidateProfile
-from .forms import CandidateProfileForm
+from .forms import CandidateProfileForm, TestimonialForm
 from django.contrib import messages
 
 def home(request):
@@ -36,3 +36,14 @@ def job_offer_detail(request, pk):
 def message_list(request):
     messages_received = Message.objects.filter(recipient=request.user)
     return render(request, 'core/message_list.html', {'messages': messages_received})
+
+def submit_testimonial(request):
+    if request.method == 'POST':
+        form = TestimonialForm(request.POST)
+        if form.is_valid():
+            # Save to database (e.g., Testimonial model) - Placeholder
+            messages.success(request, "Témoignage soumis avec succès !")
+            return redirect('home')
+    else:
+        form = TestimonialForm()
+    return render(request, 'core/submit_testimonial.html', {'form': form})
